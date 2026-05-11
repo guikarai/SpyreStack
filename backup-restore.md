@@ -167,4 +167,6 @@ This command:
 * Creates a configuration snapshot on the ACC.
 * Downloads the configuration file as acc-config-$(date +%d-%m-%Y).data.
 
+**Note:** Important: Store this file securely.
+
 #### 3.2.3 To restore an ACC Checkpoint
