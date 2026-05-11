@@ -49,8 +49,6 @@ Before proceeding with backup/restore operations, ensure you have:
 ### 1.4 References
 
 - [IBM Documentation - Creating an ACC restore checkpoint](https://www.ibm.com/docs/en/systems-hardware/linuxone/9175-ML1?topic=linuxone-creating-acc-restore-checkpoint)
-- IBM Redbooks - Spyre Stack Implementation Guide
-- IBM Z Security and Compliance Center Documentation
 
 ---
 
