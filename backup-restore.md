@@ -110,8 +110,9 @@ This method focuses on backing up logical ACC and SSA configurations via checkpo
 
 ### 3.1 Introduction to ACC/SSA
 
-You may need to revert IBM Z Appliance Control Center (ACC) or IBM Z Spyre Appliance Sypport (SSA) to a previous state or configuration. This may be necessary if an upgrade or incorrect input corrupts the ACC/SSA configuration.
-This requires the creation of ACC or SSA Restore Checkpoints.
+You may need to revert IBM Z Appliance Control Center (ACC) or IBM Z Spyre Appliance Sypport (SSA) to a previous state or configuration. This may be necessary if an upgrade or incorrect input corrupts the ACC/SSA configuration. This requires the creation of ACC or SSA Restore Checkpoints.
+
+To prepare for such scenarios, Spyre administrators should regularly create and securely store checkpoints of ACC/SSA configurations. You can automate this process by creating a job that collects and stores these checkpoints.
 
 ### 3.2 Creating an ACC/SSA Restore Checkpoint
 
@@ -125,8 +126,22 @@ It requires to known and to fill in the following variables.
 | ACC_LPAR_PASSWORD    | Password of the SSC LPAR on the HMC profile (used during ACC install)   |
 | REASON    | Reason for capturing the ACC configuration   |
 
-ACC_LPAR_USERNAME	Username of the SSC LPAR on the HMC profile (used during ACC install)
-ACC_LPAR_PASSWORD	Password of the SSC LPAR on the HMC profile (used during ACC install)
-REASON	Reason for capturing the ACC configuration
+#### 3.2.2 To create an ACC Checkpoint
 
-#### 3.2.1 Prerequisites
+Log in to the Appliance
+Generate an appliance admin token (SSC_TOKEN) using the SSC REST API:
+```curl -k -X 'POST' \
+  "https://$ACC_IP/api/com.ibm.zaci.system/api-tokens" \
+  -H 'accept: application/vnd.ibm.zaci.payload+json' \
+  -H 'Content-Type: application/vnd.ibm.zaci.payload+json;version=1.0' \
+  -H 'zACI-API: com.ibm.zaci.system/1.0' \
+  -d '{
+    "kind": "request",
+    "parameters": {
+      "user": "admin",
+      "password": "P@55word"
+    }
+  }'
+```
+
+#### 3.2.3 To restore an ACC Checkpoint
