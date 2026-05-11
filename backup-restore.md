@@ -170,3 +170,17 @@ This command:
 **Note:** Important: Store this file securely.
 
 #### 3.2.3 To restore an ACC Checkpoint
+
+To restore ACC to a previous state, import the saved configuration:
+```
+curl -k -X 'POST' \
+  "https://$ACC_IP/api/com.ibm.zaci.system/appliance-configuration/import?apply_now=true" \
+  -H "Authorization: Bearer $SSC_TOKEN" \
+  -H "zACI-API: com.ibm.zaci.system/1.0" \
+  -H "Accept: application/vnd.ibm.zaci.payload+json" \
+  -H "Content-Type: application/octet-stream" \
+  --data-binary @acc-config-25-09-2025.data
+```
+
+**Warning:** The appliance will restart after the configuration is applied.
+**Note:** Currently, ACC configuration capture and restore is only supported within the same version of ACC. Cross-version configuration migration is not supported at this time. In addition, creating an ACC checkpoint does not copy or preserve appliance images and fixes that users have already uploaded to ACC. Appliance owners are therefore responsible for saving these files or downloading them again from Fix Central.
