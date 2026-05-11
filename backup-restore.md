@@ -128,9 +128,9 @@ It requires to known and to fill in the following variables.
 
 #### 3.2.2 To create an ACC Checkpoint
 
-Log in to the Appliance
-Generate an appliance admin token (SSC_TOKEN) using the SSC REST API:
-```curl -k -X 'POST' \
+1. Log in to the Appliance. Generate an appliance admin token (SSC_TOKEN) using the SSC REST API:
+```
+curl -k -X 'POST' \
   "https://$ACC_IP/api/com.ibm.zaci.system/api-tokens" \
   -H 'accept: application/vnd.ibm.zaci.payload+json' \
   -H 'Content-Type: application/vnd.ibm.zaci.payload+json;version=1.0' \
@@ -143,5 +143,28 @@ Generate an appliance admin token (SSC_TOKEN) using the SSC REST API:
     }
   }'
 ```
+
+2. Store the returned token in SSC_TOKEN. This token is required for the next steps.
+
+3. Export the Configuration. Run the following command to export the ACC configuration:
+```
+curl -k -X 'POST' \
+  "https://$ACC_IP/api/com.ibm.zaci.system/appliance-configuration/export" \
+  -H "Authorization: Bearer $SSC_TOKEN" \
+  -H "zACI-API: com.ibm.zaci.system/1.0" \
+  -H "Content-type: application/vnd.ibm.zaci.payload+json;version=1.0" \
+  -H "Accept: application/octet-stream" \
+  -o "acc-config-$(date +%d-%m-%Y).data" \
+  -d '{
+    "kind": "request", 
+    "parameters": {
+      "description": "'Create ACC configuration data'"
+    }
+  }'
+```
+
+This command:
+* Creates a configuration snapshot on the ACC.
+* Downloads the configuration file as acc-config-$(date +%d-%m-%Y).data.
 
 #### 3.2.3 To restore an ACC Checkpoint
