@@ -112,10 +112,12 @@ You may need to revert IBM Z Appliance Control Center (ACC) or IBM Z Spyre Appli
 
 To prepare for such scenarios, Spyre administrators should regularly create and securely store checkpoints of ACC/SSA configurations. You can automate this process by creating a job that collects and stores these checkpoints.
 
-### 3.2 Creating an ACC/SSA Restore Checkpoint
+The method work for both ACC and SSA. The below methods focused on ACC can be applied on SSA appliances as well.
+
+### 3.2 Creating an ACC Restore Checkpoint
 
 #### 3.2.1 Prerequisites
-You will use API of ACC and/or SSA to make it happened.
+You will use API of ACC to make it happened.
 It requires to known and to fill in the following variables.
 | Variable | Purpose |
 |:-------- |:--------:|
