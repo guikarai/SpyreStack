@@ -14,7 +14,7 @@
 
 1. [Introduction](#1-introduction)
 2. [Backup and Restore Options Overview](#2-backup-and-restore-options-overview)
-3. [ACC and SSA Configuration Backup and Restore](#3-acc-ssa-configuration-backup-and-restore)
+3. [ACC and SSA Configuration Backup and Restore](#3-acc-and-ssa-configuration-backup-and-restore)
 
 
 ---
